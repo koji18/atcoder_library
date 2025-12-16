@@ -1,0 +1,14 @@
+/target
+/.ac-library
+
+# Compiled binaries
+*
+!*.cpp
+!*.h
+!.gitignore
+!README.md
+!.vscode/
+!ABC/
+!ARC/
+!paiza/
+!relearning/
