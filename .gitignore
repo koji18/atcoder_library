@@ -9,6 +9,10 @@
 !README.md
 !.vscode/
 !ABC/
+!ABC/**
 !ARC/
+!ARC/**
 !paiza/
+!paiza/**
 !relearning/
+!relearning/**
