@@ -7,14 +7,37 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-g",
-                "${file}", // 現在開いているファイルを指定
+                "${file}",
                 "-o",
-                "${fileBasenameNoExtension}" // 出力ファイル名をソースファイル名に合わせる
+                "${fileBasenameNoExtension}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: gcc アクティブなファイルのビルド",
+            "command": "/usr/bin/gcc",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "detail": "デバッガーによって生成されたタスク。"
         }
     ]
 }
