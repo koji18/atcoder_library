@@ -6,6 +6,7 @@
 !*.cpp
 !*.h
 !.gitignore
+!Makefile
 !README.md
 !.vscode/
 !ABC/

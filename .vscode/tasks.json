@@ -38,6 +38,34 @@
                 "isDefault": true
             },
             "detail": "デバッガーによって生成されたタスク。"
+        },
+        {
+            "label": "make run (active)",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "run"
+            ],
+            "options": {
+                "env": {
+                    "ACTIVE_FILE": "${file}"
+                }
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "make set (active)",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "set"
+            ],
+            "options": {
+                "env": {
+                    "ACTIVE_FILE": "${file}"
+                }
+            },
+            "problemMatcher": []
         }
     ]
 }
