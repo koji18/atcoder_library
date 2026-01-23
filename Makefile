@@ -95,16 +95,23 @@ test: $(BIN)
 	fi
 
 randa:
-	@num="$$(awk -v max="$(ABC_MAX)" 'BEGIN{srand(); printf "%d", int(1+rand()*max)}')"; \
-	num_padded="$$(printf "%03d" "$$num")"; \
-	src="ABC/$(PROB)/$${num_padded}.cpp"; \
+	@attempts=0; \
+	while :; do \
+		num="$$(awk -v max="$(ABC_MAX)" 'BEGIN{srand(); printf "%d", int(1+rand()*max)}')"; \
+		num_padded="$$(printf "%03d" "$$num")"; \
+		src="ABC/$(PROB)/$${num_padded}.cpp"; \
+		if [ ! -f "$$src" ]; then break; fi; \
+		attempts=$$((attempts+1)); \
+		if [ "$$attempts" -ge 50 ]; then \
+			echo "No available problem found after $$attempts attempts. Try increasing ABC_MAX or changing PROB."; \
+			exit 1; \
+		fi; \
+	done; \
 	url="https://atcoder.jp/contests/abc$${num_padded}/tasks/abc$${num_padded}_$(PROB)"; \
-	echo "Random ABC a: $$src"; \
+	echo "Random ABC $(PROB): $$src"; \
 	echo "URL: $$url"; \
-	if [ ! -f "$$src" ]; then \
-		mkdir -p "$$(dirname "$$src")"; \
-		cp .vscode/format.cpp "$$src"; \
-	fi; \
+	mkdir -p "$$(dirname "$$src")"; \
+	cp .vscode/format.cpp "$$src"; \
 	$(MAKE) download URL="$$url" SRC="$$src"
 
 new:
