@@ -1,4 +1,4 @@
-CXX ?= g++
+CXX ?= g++-15
 CXXFLAGS ?= -std=gnu++17 -O2 -Wall -Wextra
 OJ := $(shell command -v oj 2>/dev/null)
 TESTROOT ?= test
@@ -14,7 +14,7 @@ endif
 ifdef ACTIVE_FILE
 SRC ?= $(ACTIVE_FILE)
 endif
-SRC ?= $(shell find ABC ARC paiza -name '*.cpp' -type f -printf '%T@ %p\n' 2>/dev/null | sort -nr | head -n1 | cut -d' ' -f2-)
+SRC ?= $(shell find ABC ARC paiza -name '*.cpp' -type f -exec stat -f '%m %N' {} \; 2>/dev/null | sort -rn | head -n1 | cut -d' ' -f2-)
 BIN ?= build/main
 INPUT ?=
 
